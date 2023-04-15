@@ -16,12 +16,6 @@ function getEmailDomain(str) {
   let emailDomain = str.slice(atInd + 1, str.length);
   return emailDomain;
 }
-console.log(getEmailDomain('prettyandsimple@example.com'));
-console.log(getEmailDomain('someaddress@yandex.ru'));
-console.log(getEmailDomain('very.unusual.@.unusual.com@usual.com'));
-console.log(getEmailDomain('admin@mailserver2.ru'));
-console.log(getEmailDomain('example-indeed@strange-example.com'));
-console.log(getEmailDomain('example-indeedstrange-example.com'));
 
 module.exports = {
   getEmailDomain
