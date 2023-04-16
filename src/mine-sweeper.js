@@ -23,9 +23,45 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+  rowLength = matrix[0].length;
+  let newMatrix = [];
+  newMatrix.length = matrix.length;
+  for (let i = 0; i < newMatrix.length; i++) {
+    let arr = [];
+    arr.length = rowLength;
+    newMatrix[i] = arr.fill(0);
+  }
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < rowLength; j++) {
+      newMatrix[i][j] = 0;
+      if (matrix[i-1]!= undefined && matrix[i-1][j-1] != undefined) {
+        newMatrix[i][j] += matrix[i-1][j-1];
+      }
+      if (matrix[i-1] != undefined) {
+        newMatrix[i][j] += matrix[i-1][j];
+      }
+      if (matrix[i-1] != undefined && matrix[i-1][j+1] != undefined) {
+        newMatrix[i][j] += matrix[i-1][j+1];
+      }
+      if (matrix[i][j+1] != undefined) {
+        newMatrix[i][j] += matrix[i][j+1];
+      }
+      if (matrix[i+1] != undefined && matrix[i+1][j+1] != undefined) {
+        newMatrix[i][j] += matrix[i+1][j+1];
+      }
+      if (matrix[i+1] != undefined) {
+        newMatrix[i][j] += matrix[i+1][j];
+      }
+      if (matrix[i+1] != undefined && matrix[i+1][j-1] != undefined) {
+        newMatrix[i][j] += matrix[i+1][j-1];
+      }
+      if (matrix[i][j-1] != undefined) {
+        newMatrix[i][j] += matrix[i][j-1];
+      }
+    }
+  }
+  return newMatrix;
 }
 
 module.exports = {
